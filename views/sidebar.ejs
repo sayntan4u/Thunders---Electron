@@ -1,0 +1,62 @@
+
+<nav id="sidebar" class="active">
+    <div class="sidebar-header">
+        <h3>
+            <i class="material-icons">bolt</i>
+            <span class=""> 
+                Thunders              
+            </span>
+            <span class="badge rounded-pill bg-info-subtle text-info-emphasis" style="font-size: 12px !important; margin-left:-10px; margin-top:-10px">6.0</span>
+            <span class="text-info rajdhani-semibold" style="font-size: 18px !important; margin-left:-117px; margin-top:39px">dashboard</span>
+        </h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        <li class="<%= (page=='agenda')?'active':'' %>">
+            <a href="/agenda">
+                <i class="material-icons">add_task</i>
+                <span>Agenda</span>
+            </a>
+        </li>
+        <!-- <li class="<%= (page=='dash')?'active':'' %>">
+            <a href="/">
+                <i class="material-icons">dashboard</i>
+                <span>Dashboard</span>
+            </a>
+        </li> -->
+        <li class="<%= (page=='view')?'active':'' %>">
+            <a href="/view">
+                <i class="material-icons">timeline</i>
+                <span>Activity</span>
+            </a>
+        </li>
+        <li class="<%= (page=='add')?'active':'' %>">
+            <a href="/add">
+                <i class="material-icons">group</i>
+                <span>Team</span>
+            </a>
+        </li>
+        <li class="<%= (page=='analyze')?'active':'' %>">
+            <a href="/analyze">
+                <i class="material-icons">analytics</i>
+                <span>Analyze</span>
+            </a>
+        </li>
+        <li class="<%= (page=='closing')?'active':'' %>">
+            <a href="/closing">
+                <i class="material-icons">currency_rupee</i>
+                <span>Closings</span>
+            </a>
+        </li>
+        
+        <li class="<%= (page=='utilities')?'active':'' %>">
+            <a href="/utilities">
+                <i class="material-icons">extension</i>
+                <span>Utilities</span>
+            </a>
+        </li>
+       
+       
+    </ul>
+    
+</nav>

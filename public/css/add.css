@@ -1,0 +1,40 @@
+.namelist_container input{
+    width:400px !important;
+}
+
+.blank_link{
+    color: red !important;
+}
+
+#newPersonName, #userName, #deletePersonName, #groupDeleteModal{
+    font-weight: bold;
+}
+
+.btn-login {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-login:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+}
+
+.text-success, .text-danger{
+    font-weight: bold !important;
+}
+
+.team-member-header{
+    margin-top: 6px;
+}

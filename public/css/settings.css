@@ -1,0 +1,29 @@
+#table_header li{
+    font-weight: bold;
+}
+
+.th{
+    margin-bottom: 10px;
+}
+
+.selectCollection_container .text-success{
+    font-weight: bold;
+}
+
+.editor-container {
+    width:800px;
+    height: 810px;
+    overflow: hidden;
+    background: #2a2a2a;
+    border-radius: 5px;
+    /* display: flex; */
+    
+}
+
+#nodeCanvas {
+    width: 100% !important;
+    height: 100% !important;
+    cursor: default;
+    /* display: block; */
+    
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyze - Thunders</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/analyze.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <%- include('sidebar'); -%>
+
+      <!-- Page Content -->
+      <div id="content">
+        <%- include('header'); -%>
+
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+
+                    <div class="d-flex align-items-end gap-3 mb-4">
+                      <div>
+                        <label for="inputWeekFrom" class="form-label">Week From</label>
+                        <select class="form-select" id="inputWeekFrom" onchange="fromWeekChanged()">
+                          <script>
+                            for (let i = 1; i <= 53; i++) {
+                              document.write(`<option value="${i}">${i}</option>`);
+                            }
+                          </script>
+                        </select>
+                      </div>
+                      <div>
+                        <label for="inputWeekTo" class="form-label">Week To</label>
+                        <select class="form-select" id="inputWeekTo">
+
+                        </select>
+                      </div>
+                      <div>
+                        <label for="inputYear" class="form-label">Year</label>
+                        <select class="form-select" id="inputYear">
+                          <option value="2025">2025</option>
+                          <option value="2026">2026</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label for="groupSelect" class="form-label">Group</label>
+                        <select class="form-select" id="groupSelect" onchange="generateNameDropDown()">
+                          <option value="SKB">SKB</option>
+                          <option value="Sapphire">Sapphire</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label for="name" class="form-label">Name</label>
+                        <select class="form-select" id="name">
+
+                        </select>
+                      </div>
+                      <div>
+                        <button class="btn bg-primary-subtle text-primary-emphasis" id="searchBtn">
+                          <i class="fa-solid fa-magnifying-glass"></i> Search Data
+                        </button>
+                      </div>
+
+                    </div>
+                    <div class="loading form-group hide">
+                      <div class="d-flex align-items-center">
+                        <span class="text-success">Loading data...</span>
+                        &nbsp;
+                        <div class="spinner-border spinner-border-sm text-success" role="status">
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div id="dataTable" class="card table-card container-xxl hide" style="overflow-x:auto;">
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h6>Data : <span class="text-success" id="searchNameSKB"></span> &nbsp; &nbsp; Group : <span class="text-success" id="searchGroupSKB"></span></h6>
+                    <button id="screenshot_SKB" class="btn btn-warning"><i class="fa-solid fa-image"></i></button>
+                  </div>
+                  <table class="skb_dataTable table table-bordered table-hover table-sm">
+                    <thead class="thead-dark">
+                      <tr class="header">
+
+                      </tr>
+                      <tr class="sub_heading">
+
+                      </tr>
+                    </thead>
+                    <tbody class="skbData table-striped">
+
+                    </tbody>
+                  </table>
+                  <br>
+                  <p>
+                    <a class="btn btn-dark btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                      aria-expanded="false" aria-controls="collapseExample">
+                      More
+                    </a>
+                  </p>
+
+
+                  <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                      <ul class="list-unstyled">
+                        <li><span class="lead"><b><u>Per week data :</u></b></span>
+                          <ul>
+                            <li>Networking : <span id="networkingPerWeek"></span></li>
+                            <li>Info : <span id="infoPerWeek"></span></li>
+                            <li>Reinfo : <span id="reinfoPerWeek"></span></li>
+                            <li>Invi : <span id="inviPerWeek"></span></li>
+                            <li>Plan : <span id="planPerWeek"></span></li>
+                          </ul>
+                        </li>
+                        <li><span class="lead"><b><u>Other ratios :</u></b></span>
+                          <ul>
+                            <!-- <li><span id="networkingToInfo"></span> Networking for 1 Info. </li> -->
+                            <li><span id="networkingToPlan"></span> Networking for 1 Plan. </li>
+                            <li><span id="infoToPlan"></span> Info for 1 Plan.</li>
+                            <li><span id="inviToPlan"></span> Invi or 1 Plan. </li>
+                          </ul>
+                        </li>
+                        <li><span class="lead"><b><u>Loss :</u></b></span>
+                          <ul>
+                            <li>Networking to Info : <span id="networkingToInfo"></span></li>
+                            <li>Info to Reinfo : <span id="infoToReinfo"></span></li>
+                            <li>Reinfo to Invi : <span id="reinfoToInvi"></span></li>
+                          </ul>
+                        </li>
+                      </ul>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <div id="dataTableSapphire" class="card table-card container-xxl hide" style="overflow-x:auto;">
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h6>Data : <span class="text-success" id="searchNameSapphire"></span> &nbsp; &nbsp; Group : <span class="text-primary" id="searchGroupSapphire"></span></h6>
+                    <button id="screenshot_Sapphire" class="btn btn-warning"><i class="fa-solid fa-image"></i></button>
+                  </div>
+                  <div class="card-body">
+
+                  <table class="Sapphire_table table table-bordered table-hover table-sm">
+                      
+                    <thead class="thead-dark">
+                      <tr class="header">
+
+                      </tr>
+                      <tr class="sub_heading">
+
+                      </tr>
+                    </thead>
+                      <tbody class="sapphireData table-striped">
+                       
+                      </tbody>
+                    </table>
+                    </div>
+              
+              </div>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+
+  <%- include('scripts'); -%>
+  <script src="js/html2canvas.min.js"></script>
+  <script src="js/analyze.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+.fi{
+    margin-top:5px;
+}
+
+.task_count{
+    margin-left: 5px;
+    color:#949494;
+    font-size: 16px !important;
+}
+
+.loading_agenda .spinner-border{
+    color : #e0e0e0 !important;
+}
+
+.task{
+    min-height: 45px;
+}
+
+.tasks{
+    margin-top: 30px;
+}
+
+.task .btn{
+    padding:0px !important;
+    border-radius: 0px !important;
+}
+
+.task .btn i{
+    font-size:30px !important;
+}
+
+.task .task_text{
+   text-wrap: wrap !important;
+}
+
+.task .btn-drag, .task .btn-edit, .task .btn-delete{
+    border-radius: 5px !important;
+    color: #e0e0e0 !important;
+}
+
+.task .btn-delete:hover{
+    color: #58151c !important;
+    background-color: #f8d7da !important;
+}
+
+/* .task .btn-drag:hover, */
+
+ .task .btn-edit:hover{
+    background-color: #e0e0e0;
+    color:#212529 !important;
+}
+
+.task_manager .edit-card, .task_manager .update-card{
+    border: 1px solid #e0e0e0;
+}
+
+.edit-card .input-task, .update-card .input-task{
+    border: none !important;
+    font-weight: bold;
+    padding:10px !important;
+}
+
+.edit-card .input-task::placeholder , .update-card .input-task::placeholder {
+    color: rgba(33, 37, 41, 0.75);
+    opacity: 1; 
+  }
+
+.edit-card .input-task:focus, .update-card .input-task:focus{
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.edit-card .controls-edit, .update-card .controls-edit{
+    margin-top: 30px !important;
+}
+
+.status_text{
+    color:#949494;
+}
+
+#deleteAgendaModal .task_content{
+    font-weight: bold;
+}
+
+.slots_plan{
+    margin-left: 15px;
+}
+
+.completion_alert{
+    font-size: 15px;
+}

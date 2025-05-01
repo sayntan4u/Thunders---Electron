@@ -1,0 +1,484 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+.rajdhani-light {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.rajdhani-regular {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.rajdhani-medium {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.rajdhani-semibold {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.rajdhani-bold {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Main Layout */
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    min-height: 100vh;
+    background: #343a40;
+}
+
+/* Sidebar Styles */
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #343a40;
+    color: #ffffff;
+    transition: all 0.3s;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    height: 100vh;
+}
+
+#sidebar.active {
+    min-width: 80px;
+    max-width: 80px;
+}
+
+#sidebar.active .sidebar-header h3 span,
+#sidebar.active ul li a span {
+    display: none;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #343a40;
+    margin-top: 20px;
+}
+
+#sidebar .sidebar-header h3 {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#sidebar .sidebar-header h3 i {
+    background: rgba(0, 188, 212, 0.4);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.8);
+    transition: all 0.3s ease;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00bcd4, 0 0 40px #00bcd4, 0 0 50px #00bcd4, 0 0 60px #00bcd4, 0 0 70px #00bcd4;
+    }
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #6fefff, 0 0 40px #6fefff, 0 0 50px #6fefff, 0 0 60px #6fefff, 0 0 70px #6fefff, 0 0 80px #6fefff;
+    }
+  }
+
+    
+
+/* Removing hover effect */
+#sidebar .sidebar-header h3 i:hover {
+    background: rgba(0, 188, 212, 0.4);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.8);
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul li a {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s;
+    justify-content: flex-start;
+}
+
+#sidebar.active ul li a {
+    justify-content: center;
+    padding: 10px;
+}
+
+#sidebar ul li a span {
+    margin-left: 10px;
+}
+
+#sidebar.active ul li a span {
+    display: none;
+}
+
+#sidebar ul li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar ul li.active>a {
+    background: rgba(0, 188, 212, 0.1);
+    color: #fff;
+    border-left: 4px solid #00bcd4;
+    position: relative;
+    overflow: hidden;
+}
+
+#sidebar ul li.active>a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+            rgba(0, 188, 212, 0) 0%,
+            rgba(0, 188, 212, 0.2) 50%,
+            rgba(0, 188, 212, 0) 100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+#sidebar ul li.active>a i {
+    color: #00bcd4;
+    position: relative;
+    z-index: 1;
+}
+
+/* #sidebar ul li.active > a span {
+    color: #00bcd4;
+    position: relative;
+    z-index: 1;
+} */
+
+#sidebar ul li a i {
+    font-size: 24px;
+    min-width: 24px;
+    text-align: center;
+    color: #adb5bd;
+}
+
+/* Content Styles */
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    background: #f8f9fa;
+    margin-left: 80px;
+}
+
+/* Navbar Styles */
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .ms-auto {
+    display: flex;
+    align-items: center;
+}
+
+.navbar h4 {
+    color: #343a40;
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+.welcome-text {
+    color: #343a40;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-right: 15px;
+}
+
+#sidebarCollapse {
+    background: transparent;
+    border: none;
+    color: #343a40;
+}
+
+#sidebarCollapse:hover {
+    background: #f8f9fa;
+}
+
+/* Dropdown Styles */
+.btn-link {
+    color: #343a40;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: #2c3136;
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: #343a40;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #2c3136;
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    background: #fff;
+}
+
+.card-title {
+    color: #343a40;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-text {
+    margin: 1rem 0;
+    color: #343a40;
+}
+
+/* Activity List Styles */
+.activity-list {
+    margin-top: 1rem;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-item i {
+    margin-right: 1rem;
+    color: #6c757d;
+}
+
+.activity-content p {
+    margin: 0;
+    color: #343a40;
+}
+
+.activity-content small {
+    color: #6c757d;
+}
+
+/* Material Icons */
+.material-icons {
+    vertical-align: middle;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+
+    #sidebar.active {
+        margin-left: 0;
+    }
+
+    #content {
+        width: 100%;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Modal Styles */
+.modal-content {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    border-bottom: 1px solid #eee;
+    padding: 1.25rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    color: #343a40;
+}
+
+.modal-footer {
+    border-top: 1px solid #eee;
+    padding: 1.25rem;
+}
+
+.modal-title {
+    color: #343a40;
+    font-weight: 500;
+}
+
+.btn-close {
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+select {
+    width: 200px !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+.table-bordered td,
+.table-bordered th {
+    border: 1px solid black !important;
+}
+
+.txt-align-center {
+    text-align: center !important;
+}
+
+/* .roster input[type="text"] {
+    padding: 12px !important;
+    font-weight: bold !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    border: none !important;
+    text-align: center !important;
+}
+
+.roster input[type=text]:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+} */
+
+.roster td {
+    padding: 0 !important;
+}
+
+.roster .roster-header th {
+    padding: 10px !important;
+}
+
+.roster .time {
+    width: 100px !important;
+}
+
+.roster .has_data {
+    background-color: #e5e5fa !important;
+}
+
+.roster .has_data:focus {
+    background-color: #d0d0f6 !important;
+}
+
+.roster .has_data:hover {
+    background-color: #d0d0f6 !important;
+}
+
+.btn-roster{
+    background: #d4b1f4;/*rgba(0, 188, 212, 0.4);*/
+    border: none;
+    color: #343a40;
+}
+
+.btn-roster:hover{
+    background: #c89bf1;
+}
+
+.loading_roster .text-success{
+    font-weight: bold !important;
+}
+
+.modal-header, .modal-footer{
+    border: none !important;
+}
+
+.btn-roster-data {
+    min-width: 140px !important;
+    width: 100% !important;
+    height: 50px !important;
+    font-weight: bold;
+    border-radius: 0px;
+    border: none !important;
+}
+
+.irName
+{
+    font-size: 14px !important;
+}
+
+.plan_status {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+}

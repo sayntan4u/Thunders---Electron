@@ -1,0 +1,50 @@
+p{
+    display:inline;
+}
+
+td, .middle{
+    vertical-align: middle !important;
+    
+}
+
+.done_data{
+    background-color: #f8fad7 !important;
+}
+
+.bg-plan{
+    background-color: #ebd7fa !important;
+}
+
+
+.txt-align-center{
+    text-align: center !important;
+}
+
+.pad-badge{
+    padding : 0.8em 0.8em !important;
+}
+
+.table-card{
+    padding:20px 20px!important;
+}
+
+#dataTable{
+    margin-top: 10px !important;
+}
+
+.remarks{
+    width: 100px !important;
+}
+
+.list,.networkingTarget, .infosTarget, .reinfosTarget, .meetupsTarget, .invisTarget, .plans
+{
+    font-weight:bold;
+}
+
+select{
+    width: 150px !important;
+}
+
+.text-success{
+    font-weight: bold !important;
+}

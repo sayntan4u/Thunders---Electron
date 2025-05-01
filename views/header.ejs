@@ -1,0 +1,101 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center">
+            <button type="button" id="sidebarCollapse" class="btn btn-info">
+                <i class="material-icons">menu</i>
+            </button>
+            <% if(page=='dash' ){ %>
+                <h4 class="mb-0 ms-3">Dashboard</h4>
+                <% } else if(page=='view' ){ %>
+                    <h4 class="mb-0 ms-3">Activity Track</h4>
+                    <% } else if(page=='add' ){ %>
+                        <h4 class="mb-0 ms-3">Team Management</h4>
+                        <% } else if(page=='analyze' ){ %>
+                            <h4 class="mb-0 ms-3">Analyze Data</h4>
+                            <% } else if(page=='utilities' ){ %>
+                                <h4 class="mb-0 ms-3">Utilities</h4>
+                                <% } else if(page=='settings' ){ %>
+                                    <h4 class="mb-0 ms-3">Settings</h4>
+                                    <% } else if(page=='agenda' ){ %>
+                                        <h4 class="mb-0 ms-3">Agenda</h4>
+                                        <% } else if(page=='closing' ){ %>
+                                            <h4 class="mb-0 ms-3">Closings</h4>
+                                            <% } %>
+        </div>
+        <div class="ms-auto">
+            <span class="welcome-text me-3">Welcome, <%= userName %></span>
+            <button type="button" class="btn bg-secondary-subtle text-secondary-emphasis me-1" data-bs-toggle="modal" data-bs-target="#rosterModal"><i
+                    class="fa-solid fa-calendar"></i></button>
+            <div class="dropdown">
+                <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown">
+                    <i class="material-icons">account_circle</i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#" disabled>Profile</a></li>
+                    <li><a class="dropdown-item" href="/settings">Settings</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item link-danger" href="#" data-bs-toggle="modal"
+                            data-bs-target="#logoutModal">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Logout Confirmation Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmLogout">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="rosterModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Plan Roster</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="loading_roster form-group">
+                    <div class="d-flex align-items-center">
+                        <span class="text-success">Loading Roster...</span>
+                        &nbsp;
+                        <div class="spinner-border spinner-border-sm text-success" role="status">
+
+                        </div>
+                    </div>
+                </div>
+                <table class="roster table table-warning table-bordered table-sm text-center">
+                    <thead class="roster-header">
+                        <tr></tr>
+
+                    </thead>
+                    <tbody class="roster-body">
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" onclick="clearRoster()">Clear All</button>
+            </div> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - Thunders</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/settings.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <%- include('sidebar'); -%>
+
+      <!-- Page Content -->
+      <div id="content">
+        <%- include('header'); -%>
+
+          <div class="container-fluid">
+            <div class="card">
+              <div class="card-body">
+                <div class="accordion" id="settingsMenu">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        <b>SKB Data Fields</b>
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
+                      aria-labelledby="panelsStayOpen-headingOne" data-bs-parent="#settingsMenu">
+                      <div class="accordion-body">
+                        <div class="row justify-content-evenly">
+                          <div class="col-2">
+                            <div>
+                              <button type="button" class="btn bg-primary-subtle text-primary-emphasis btn-sm" id="addFieldBtn"><i
+                                  class="fa-solid fa-plus"></i> Add Field</button>
+                              <span id="drag_drop"></span>
+                              <br><br>
+                              <ul class="list-unstyled" id="table_header">
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-10">
+                            <table class="skb_table table table-bordered table-hover table-sm">
+
+                            </table>
+                            <div class="form-floating">
+                              <textarea class="form-control" placeholder="Leave a comment here" id="settingsJsonTextSKB"
+                                style="height: 300px" disabled></textarea>
+                              <label for="floatingTextarea2">settingsJson.SKB_table</label>
+                            </div>
+                            <br>
+                            <div class="row g-3 align-items-center">
+                              <div class="col-auto">
+                                <div class="input-group mb-3">
+                                  <span class="input-group-text"><b>View page col span</b></span>
+                                  <input type="text" id="viewColSpanSKB" class="form-control"
+                                    style="width: 100px;  font-weight: bold;" disabled>
+                                  <button type="button" class="btn" onclick="editColSpan(this)"><i
+                                      class="fa-solid fa-pen"></i></button>
+                                  <div class="btn_controls hide">
+                                    <button type="button" class="btn" onclick="cancelColSpan(this)"><i
+                                        class="fa-solid fa-xmark"></i></button>
+                                    <button type="button" class="btn" onclick="saveColSpan(this, 'View', 'SKB')"><i
+                                        class="fa-solid fa-floppy-disk"></i></button>
+                                  </div>
+
+                                </div>
+                              </div>
+                              <div class="col-auto">
+                                <div class="input-group mb-3">
+                                  <span class="input-group-text"><b>Analyze page col span</b></span>
+                                  <input type="text" id="analyzeColSpanSKB" class="form-control"
+                                    style="width: 100px; font-weight: bold;" disabled>
+                                  <button type="button" class="btn" onclick="editColSpan(this)"><i
+                                      class="fa-solid fa-pen"></i></button>
+                                  <div class="btn_controls hide">
+                                    <button type="button" class="btn" onclick="cancelColSpan(this)"><i
+                                        class="fa-solid fa-xmark"></i></button>
+                                    <button type="button" class="btn" onclick="saveColSpan(this, 'Analyze', 'SKB')"><i
+                                        class="fa-solid fa-floppy-disk"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            <code>Warning : changing the configuration may break the application and existing data might be lost</code>
+                            <br><br>
+                            <button type="button" class="btn bg-danger-subtle text-danger-emphasis" id="saveConfigSKB"><i
+                                class="fa-solid fa-floppy-disk"></i> Save Configuration</button>
+                            <br><br>
+                            <div class="card bg-success-subtle text-success-emphasis loading hide"
+                              style="width: 38rem;">
+                              <div class="card-body ">
+                                <h5 class="card-title">
+                                  Status :
+                                  <span class="">in progress... </span>
+                                  <div class="spinner-border spinner-border-sm" role="status">
+                                  </div>
+                                </h5>
+                                <p class="d-flex align-items-center card-text status"></p>
+                                <p class="card-text progress_percentage"></p>
+                                <div class="progress" role="progressbar" style="height: 2px">
+                                  <div class="progress-bar bg-dark" style="width: 0%"></div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="alert alert_skb alert-success d-flex align-items-center hide" role="alert">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16"
+                                role="img" aria-label="Warning:">
+                                <path
+                                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                              </svg>
+                              <div>
+                                Congratulations ! your configuaration is saved.
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwo">
+                        <b>SAPPHIRE Data Fields</b>
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                      data-bs-parent="#settingsMenu" aria-labelledby="panelsStayOpen-headingTwo">
+                      <div class="accordion-body">
+                        <div class="row justify-content-evenly">
+                          <div class="col-2">
+                            <div>
+                              <button type="button" class="btn bg-primary-subtle text-primary-emphasis btn-sm" id="addFieldBtnSapphire"><i
+                                  class="fa-solid fa-plus"></i> Add Field</button>
+                              <span id="drag_drop_sapphire"></span>
+                              <br><br>
+                              <ul class="list-unstyled" id="table_header_sapphire">
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-10">
+                            <table class="sapphire_table table table-bordered table-hover table-sm">
+
+                            </table>
+                            <div class="form-floating">
+                              <textarea class="form-control" placeholder="Leave a comment here"
+                                id="settingsJsonTextSapphire" style="height: 300px" disabled></textarea>
+                              <label for="floatingTextarea2">settingsJson.Sapphire_table</label>
+                            </div>
+                            <br>
+                            <div class="row g-3 align-items-center">
+                              <div class="col-auto">
+                                <div class="input-group mb-3">
+                                  <span class="input-group-text"><b>View page col span</b></span>
+                                  <input type="text" id="viewColSpanSapphire" class="form-control"
+                                    style="width: 100px;  font-weight: bold;" disabled>
+                                  <button type="button" class="btn" onclick="editColSpan(this)"><i
+                                      class="fa-solid fa-pen"></i></button>
+                                  <div class="btn_controls hide">
+                                    <button type="button" class="btn" onclick="cancelColSpan(this)"><i
+                                        class="fa-solid fa-xmark"></i></button>
+                                    <button type="button" class="btn" onclick="saveColSpan(this, 'View', 'Sapphire')"><i
+                                        class="fa-solid fa-floppy-disk"></i></button>
+                                  </div>
+
+                                </div>
+                              </div>
+                              <div class="col-auto">
+                                <div class="input-group mb-3">
+                                  <span class="input-group-text"><b>Analyze page col span</b></span>
+                                  <input type="text" id="analyzeColSpanSapphire" class="form-control"
+                                    style="width: 100px; font-weight: bold;" disabled>
+                                  <button type="button" class="btn" onclick="editColSpan(this)"><i
+                                      class="fa-solid fa-pen"></i></button>
+                                  <div class="btn_controls hide">
+                                    <button type="button" class="btn" onclick="cancelColSpan(this)"><i
+                                        class="fa-solid fa-xmark"></i></button>
+                                    <button type="button" class="btn"
+                                      onclick="saveColSpan(this, 'Analyze', 'Sapphire')"><i
+                                        class="fa-solid fa-floppy-disk"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+
+                            <code>Warning : changing the configuration may break the application and existing data might be lost</code>
+                            <br><br>
+                            <button type="button" class="btn bg-danger-subtle text-danger-emphasis" id="saveConfigSapphire"><i
+                                class="fa-solid fa-floppy-disk"></i> Save Configuration</button>
+                            <br>
+
+                            <br>
+
+
+                            <div class="card bg-success-subtle text-success-emphasis loading_sapphire hide"
+                              style="width: 38rem;">
+                              <div class="card-body ">
+                                <h5 class="card-title">
+                                  Status :
+                                  <span class="">in progress... </span>
+                                  <div class="spinner-border spinner-border-sm" role="status">
+                                  </div>
+                                </h5>
+                                <p class="d-flex align-items-center card-text status"></p>
+                                <p class="card-text progress_percentage"></p>
+                                <div class="progress" role="progressbar" style="height: 2px">
+                                  <div class="progress-bar bg-dark" style="width: 0%"></div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="alert alert_sapphire alert-success d-flex align-items-center hide" role="alert">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16"
+                                role="img" aria-label="Warning:">
+                                <path
+                                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                              </svg>
+                              <div>
+                                Congratulations ! your configuaration is saved.
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwo">
+                        <b>SKB - Sapphire Connections</b>
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+                      data-bs-parent="#settingsMenu" aria-labelledby="panelsStayOpen-headingTwo">
+                      <div class="accordion-body">
+                        <div class="row">
+                          <div class="col-auto">
+                            <div class="editor-container">
+                              <canvas id="nodeCanvas"></canvas>
+                            </div>
+                          </div>
+                          <div class="col-auto">
+
+                            <div class="card" style="width: 30rem;">
+                              <div class="card-body">
+
+                                <code>Warning : changing the connections may break the application</code>
+                                <br><br>
+                                <button type="button" class="btn bg-danger-subtle text-danger-emphasis" id="saveConnections"><i
+                                    class="fa-solid fa-floppy-disk"></i> Save Connections</button>
+                                <br><br>
+                                <div class="loading_connection form-group hide">
+                                  <div class="d-flex align-items-center">
+                                    <span class="text-success-emphasis">Saving connections...</span>
+                                    &nbsp;
+                                    <div class="spinner-border spinner-border-sm text-success" role="status">
+
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="alert alert_connection alert-success d-flex align-items-center hide"
+                                  role="alert">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16"
+                                    role="img" aria-label="Warning:">
+                                    <path
+                                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                  </svg>
+                                  <div>
+                                    Congratulations ! your connections are saved.
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseThree">
+                        <b>Import / Export Data</b>
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                      data-bs-parent="#settingsMenu" aria-labelledby="panelsStayOpen-headingThree">
+                      <div class="accordion-body">
+                        <div class="row" style="margin-bottom: 15px;">
+                          <div class="col-auto">
+                            <div class="row">
+                              <div class="col-auto">
+
+                                <select class="form-select" onchange="importExportDropDownOnChanged(this)" id="reqType">
+                                  <option>Export Data</option>
+                                  <option>Import Data</option>
+                                </select>
+                              </div>
+                              <div class="col-auto browse_container hide">
+                                <input type="file" class="form-control" id="importFile">
+                              </div>
+                              <div class="col-auto selectCollection_container">
+                                <div class="row">
+                                  <div class="col-auto">
+                                    <select class="form-select" id="selectCollection" onchange="generateNameDropDown()">
+                                      <option>SKB</option>
+                                      <option>Sapphire</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-auto">
+                                    <select class="form-select" id="name">
+
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+
+                          <div class="col-auto">
+                            <button type="button" id="processBtn" class="btn bg-primary-subtle text-primary-emphasis"
+                              onclick="processRequest()">Process</button>
+                          </div>
+                        </div>
+
+                        <div class="card bg-success-subtle text-success-emphasis loading_import hide"
+                          style="width: 38rem;">
+                          <div class="card-body ">
+                            <h5 class="card-title">
+                              Status :
+                              <span class="">in progress... </span>
+                              <div class="spinner-border spinner-border-sm" role="status">
+                              </div>
+                            </h5>
+                            <p class="d-flex align-items-center card-text status"></p>
+                            <p class="card-text progress_percentage"></p>
+                            <div class="progress" role="progressbar" style="height: 2px">
+                              <div class="progress-bar bg-dark" style="width: 0%"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="alert alert_import alert-success d-flex align-items-center hide" role="alert">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img"
+                            aria-label="Warning:">
+                            <path
+                              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                          </svg>
+                          <div>
+                            <strong>Congratulations !</strong> your request is processed.
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+
+
+          </div>
+      </div>
+  </div>
+
+  <%- include('scripts'); -%>
+    <script src="js/settings.js"></script>
+
+</body>
+
+</html>

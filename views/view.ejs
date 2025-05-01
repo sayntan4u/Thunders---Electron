@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity - Thunders</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/view.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <%- include('sidebar'); -%>
+
+      <!-- Page Content -->
+      <div id="content">
+        <%- include('header'); -%>
+
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex align-items-end gap-3 mb-4">
+                      <div>
+                        <label for="inputWeek" class="form-label">Week</label>
+                        <select class="form-select" id="inputWeek">
+                      
+                        </select>
+                      </div>
+                      <div>
+                        <label for="inputYear" class="form-label">Year</label>
+                        <select class="form-select" id="inputYear">
+                          <option value="2025">2025</option>
+                          <option value="2026">2026</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label for="groupSelect" class="form-label">Group</label>
+                        <select class="form-select" id="groupSelect">
+                          <option>SKB</option>
+                          <option>Sapphire</option>
+                        </select>
+                      </div>
+                      <div>
+                        <button class="btn bg-primary-subtle text-primary-emphasis" id="searchActivity">
+                          <i class="fa-solid fa-magnifying-glass"></i> Search Data
+                        </button>
+                      </div>
+
+                    </div>
+                    <div class="loading form-group hide">
+                      <div class="d-flex align-items-center">
+                        <span class="text-success">Loading data...</span>
+                        &nbsp;
+                        <div class="spinner-border spinner-border-sm text-success" role="status">
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="accordion container-xxl hide" id="prevWeekAcordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <b class="prevWeek">Week 13 Data</b>
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                      data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <table id="prevWeekTable" class="table table-bordered table-hover table-sm hide">
+                          <thead class="thead-dark">
+                            <tr class="header">
+
+                            </tr>
+                            <tr class="sub_heading">
+
+                            </tr>
+                          </thead>
+                          <tbody class="skbPrevData table-striped">
+
+                          </tbody>
+                        </table>
+                        <div class="loading_prev form-group hide">
+                          <div class="d-flex align-items-center">
+                            <span class="text-success">Loading data...</span>
+                            &nbsp;
+                            <div class="spinner-border spinner-border-sm text-success" role="status">
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="accordion container-xxl hide" id="prevWeekAcordionSapphire">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <b class="prevWeek"></b>
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                      data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <table id="prevWeekTableSapphire" class="table table-bordered table-hover table-sm hide">
+
+                          <thead class="thead-dark">
+                            <tr class="header">
+
+                            </tr>
+                            <tr class="sub_heading">
+
+                            </tr>
+                          </thead>
+                          <tbody class="sapphirePrevData table-striped">
+
+                          </tbody>
+                        </table>
+                        <div class="loading_prev_sapphire form-group hide">
+                          <div class="d-flex align-items-center">
+                            <span class="text-success">Loading data...</span>
+                            &nbsp;
+                            <div class="spinner-border spinner-border-sm text-success" role="status">
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <br>
+                <div id="dataTable" class="container-xxl card hide" style="overflow-x:auto;">
+                  <h5 class="card-title currWeek">Week 14 Data</h5>
+                  <div class="card-body">
+
+                    <table class="skb_dataTable table table-bordered table-hover table-sm">
+                      <thead class="thead-dark">
+                        <tr class="header">
+
+                        </tr>
+                        <tr class="sub_heading">
+
+                        </tr>
+                      </thead>
+
+                      <tbody class="skbData table-striped">
+
+                      </tbody>
+                      <!-- <thead class="">
+                                  <tr>
+                                    <th scope="col" class="txt-align-center text-light bg-dark">#</th>
+                                    <th scope="col" class="txt-align-center text-light bg-dark">Name</th>
+                                    <th scope="col" class="txt-align-center text-light bg-dark">List Count</th>
+                                    <th scope="col" class="txt-align-center text-light bg-dark" colspan="2">Networking</th>
+                                    <th scope="col" class="txt-align-center text-light bg-dark" colspan="2">Fresh Infos</th>
+                                    <th scope="col" class="txt-align-center text-light bg-dark" colspan="2">Reinfos</th>
+                                    <th scope="col" class="txt-align-center text-light bg-dark" colspan="2">Meetups</th>
+                                    <th scope="col" class="txt-align-center text-light bg-dark" colspan="2">Invi</th>
+                                    <th scope="col" class="txt-align-center text-light bg-dark">Plan</th>
+                                    <th scope="col" class="txt-align-center text-light bg-dark">Pending Plans</th>
+                                    <th scope="col" class="txt-align-center text-light bg-dark">Remarks</th>
+                    
+                                  </tr>
+                                  <tr>
+                                    <th scope="col" class="text-light bg-dark"></th>
+                                    <th scope="col" class="text-light bg-dark"></th>
+                                    <th scope="col" class="text-light bg-dark"></th>
+                                    <th scope="col" class="text-light bg-dark">Done</th>
+                                    <th scope="col" class="text-light bg-dark">Target</th>
+                                    <th scope="col" class="text-light bg-dark">Done</th>
+                                    <th scope="col" class="text-light bg-dark">Target</th>
+                                    <th scope="col" class="text-light bg-dark">Done</th>
+                                    <th scope="col" class="text-light bg-dark">Target</th>
+                                    <th scope="col" class="text-light bg-dark">Done</th>
+                                    <th scope="col" class="text-light bg-dark">Target</th>
+                                    <th scope="col" class="text-light bg-dark">Done</th>
+                                    <th scope="col" class="text-light bg-dark">Target</th>
+                                    <th scope="col" class="text-light bg-dark"></th>
+                                    <th scope="col" class="text-light bg-dark"></th>
+                                    <th scope="col" class="text-light bg-dark"></th>
+                                  </tr>
+                                </thead> -->
+                    </table>
+                  </div>
+
+                </div>
+
+                <div id="dataTableSapphire" class="container-xxl card hide" style="overflow-x:auto;">
+                  <h5 class="card-title currWeek">Week 14 Data</h5>
+                  <div class="card-body">
+
+                    <table class="Sapphire_table table table-bordered table-hover table-sm">
+
+                      <thead class="thead-dark">
+                        <tr class="header">
+
+                        </tr>
+                        <tr class="sub_heading">
+
+                        </tr>
+                      </thead>
+                      <tbody class="sapphireData table-striped">
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+
+  <%- include('scripts'); -%>
+  <script src="js/view.js"></script>
+</body>
+
+</html>
