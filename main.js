@@ -1,7 +1,17 @@
 const { app, BrowserWindow } = require("electron");
 const server = require("./app");
+const fs = require("fs");
 
 let mainWindow;
+
+// //Setup directories
+var dir = ['./backup', './legal', './uploads'];
+
+dir.forEach(function (currentValue, index, arr) {
+  if (!fs.existsSync(currentValue)) {
+    fs.mkdirSync(currentValue);
+  }
+});
  
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -12,6 +22,7 @@ function createWindow() {
     },
   });
   mainWindow.maximize();
+  mainWindow.setMenuBarVisibility(false);
  
   mainWindow.loadURL("http://localhost:8080");
   mainWindow.on("closed", function () {

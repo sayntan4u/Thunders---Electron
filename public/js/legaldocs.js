@@ -33,7 +33,8 @@ function generateLegalDoc(){
 
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
-        const response = JSON.parse(this.responseText);
+        // const response = this.responseText;
+        // console.log(response);
         $(".legal").attr("href","legal/LEGAL DOCUMENT - " + prospectName +".docx");
         $(".declaration").attr("href","legal/DECLARATION - " + prospectName +".docx");
         $("#legalDocResult").removeClass("hide");
