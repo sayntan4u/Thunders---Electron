@@ -2,6 +2,8 @@ $("#addClosing").click(function () {
     addClosing();
 });
 
+var settingsJson = [];
+
 
 function addClosing() {
     var irName = $("#irNameAdd").val();
@@ -12,11 +14,11 @@ function addClosing() {
 
     $(".loading").toggleClass("hide");
 
-    console.log(irName)
-    console.log(prosName)
-    console.log(uv)
-    console.log(status)
-    console.log(node)
+    // console.log(irName)
+    // console.log(prosName)
+    // console.log(uv)
+    // console.log(status)
+    // console.log(node)
 
     var data = {
         irName: irName,
@@ -102,7 +104,7 @@ function generateClosingTable(response) {
                     ${response[i].node}
                     
                     </td>
-                    <td class="text-success align-middle profit_td">
+                    <td class="text-success align-middle profit_td ${settingsJson.showProfit ? '' : 'hide'}">
                     <b>
                     +
                     <i class="material-icons" style="font-size:20px">currency_rupee</i>
@@ -242,8 +244,8 @@ function addTotalRow() {
             </b>
             </td>
             <td class="align-middle"></td>
-            <td class="align-middle txt-align-center"> Total Profit :</td>
-            <td class="align-middle">
+            <td class="align-middle txt-align-center"> ${settingsJson.showProfit ? 'Total Profit :' : ''}</td>
+            <td class="align-middle ${settingsJson.showProfit ? '' : 'hide'}">
             <b>
             <i class="material-icons" style="font-size:20px">currency_rupee</i>
                 <span class="total_profit">    
@@ -255,6 +257,21 @@ function addTotalRow() {
             `);
 
     updateTotal();
+}
+
+function generateTableHeader(){
+    $(".closings-header").append(`
+        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">IR</th>
+                            <th scope="col">Prospect</th>
+                            <th scope="col">UV</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Node Upline</th>
+                            <th scope="col" class="${settingsJson.showProfit ? '' : 'hide'}">Profit</th>
+                            <th scope="col">Action</th>
+                          </tr>
+        `);
 }
 
 function updateTotal() {
@@ -288,7 +305,20 @@ deleteModal.addEventListener('show.bs.modal', function (event) {
     // $("#groupDeleteModal").html(group);
 })
 
-loadClosings();
+function loadSettings() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/settings/getSettings");
+    xhttp.onload = function () {
+        const response = JSON.parse(this.responseText);
+        settingsJson = response;
+        generateTableHeader();
+        loadClosings();
+    }
+    xhttp.setRequestHeader('Content-Type', 'application/json');
+    xhttp.send();
+}
+
+loadSettings();
 
 generateUVDropDown();
 generateNodeDropDown();

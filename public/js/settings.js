@@ -38,8 +38,8 @@ function addConnection(startNode, endNode) {
 }
 
 function removeConnection(startNode) {
-    for(let i = 0; i < settingsJson.connections.length; i++) {
-        if(settingsJson.connections[i].startNode == startNode.title) {
+    for (let i = 0; i < settingsJson.connections.length; i++) {
+        if (settingsJson.connections[i].startNode == startNode.title) {
             settingsJson.connections.splice(i, 1);
             break;
         }
@@ -1267,7 +1267,9 @@ function loadSettings() {
     xhttp.onload = function () {
         const response = JSON.parse(this.responseText);
         settingsJson = response;
-        console.log(settingsJson);
+
+        //set show Profit switch
+        $("#showProfitSwitch").prop("checked", settingsJson.showProfit);
 
         //Load SKB Settings
         $("#settingsJsonTextSKB").val(JSON.stringify(settingsJson.SKB_table, null, 2));
@@ -1342,6 +1344,18 @@ function getStatusImport() {
     }
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send();
+}
+
+function toggleShowProfit() {
+   settingsJson.showProfit = $("#showProfitSwitch").prop("checked");
+   const data = { config: settingsJson };
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/settings/updateShowProfit");
+    xhttp.onload = function () {
+        
+    }
+    xhttp.setRequestHeader('Content-Type', 'application/json');
+    xhttp.send(JSON.stringify(data));
 }
 
 loadSettings();

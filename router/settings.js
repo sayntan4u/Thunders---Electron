@@ -34,6 +34,12 @@ router.post("/saveSettings", requireAuth, async (req, res) => {
     res.send("success");
 });
 
+router.post("/updateShowProfit", requireAuth, async (req, res) => {
+    const config = req.body.config;
+    await dbm.updateShowProfit(config);
+    // res.send("success");
+});
+
 router.post("/export", requireAuth, async (req, res) => {
     const group = req.body.group;
     const field = req.body.field;

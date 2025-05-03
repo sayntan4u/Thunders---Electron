@@ -23,6 +23,7 @@
           <div class="container-fluid">
             <div class="card">
               <div class="card-body">
+                <h5 class="card-title">Data table settings</h5>
                 <div class="accordion" id="settingsMenu">
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -300,93 +301,89 @@
                       </div>
                     </div>
                   </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseThree">
-                        <b>Import / Export Data</b>
-                      </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
-                      data-bs-parent="#settingsMenu" aria-labelledby="panelsStayOpen-headingThree">
-                      <div class="accordion-body">
-                        <div class="row" style="margin-bottom: 15px;">
-                          <div class="col-auto">
-                            <div class="row">
-                              <div class="col-auto">
-
-                                <select class="form-select" onchange="importExportDropDownOnChanged(this)" id="reqType">
-                                  <option>Export Data</option>
-                                  <option>Import Data</option>
-                                </select>
-                              </div>
-                              <div class="col-auto browse_container hide">
-                                <input type="file" class="form-control" id="importFile">
-                              </div>
-                              <div class="col-auto selectCollection_container">
-                                <div class="row">
-                                  <div class="col-auto">
-                                    <select class="form-select" id="selectCollection" onchange="generateNameDropDown()">
-                                      <option>SKB</option>
-                                      <option>Sapphire</option>
-                                    </select>
-                                  </div>
-                                  <div class="col-auto">
-                                    <select class="form-select" id="name">
-
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-
-                          <div class="col-auto">
-                            <button type="button" id="processBtn" class="btn bg-primary-subtle text-primary-emphasis"
-                              onclick="processRequest()">Process</button>
-                          </div>
-                        </div>
-
-                        <div class="card bg-success-subtle text-success-emphasis loading_import hide"
-                          style="width: 38rem;">
-                          <div class="card-body ">
-                            <h5 class="card-title">
-                              Status :
-                              <span class="">in progress... </span>
-                              <div class="spinner-border spinner-border-sm" role="status">
-                              </div>
-                            </h5>
-                            <p class="d-flex align-items-center card-text status"></p>
-                            <p class="card-text progress_percentage"></p>
-                            <div class="progress" role="progressbar" style="height: 2px">
-                              <div class="progress-bar bg-dark" style="width: 0%"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="alert alert_import alert-success d-flex align-items-center hide" role="alert">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                            class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img"
-                            aria-label="Warning:">
-                            <path
-                              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                          </svg>
-                          <div>
-                            <strong>Congratulations !</strong> your request is processed.
-                          </div>
-                        </div>
-                      </div>
-
-
-
-                    </div>
-                  </div>
                 </div>
 
               </div>
             </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Closings settings</h5>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="showProfitSwitch" onchange="toggleShowProfit()">
+                  <label class="form-check-label" for="showProfitSwitch">Show profit column</label>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Import/Export Data</h5>
+                <div class="row" style="margin-bottom: 15px;">
+                  <div class="col-auto">
+                    <div class="row">
+                      <div class="col-auto">
 
+                        <select class="form-select" onchange="importExportDropDownOnChanged(this)" id="reqType">
+                          <option>Export Data</option>
+                          <option>Import Data</option>
+                        </select>
+                      </div>
+                      <div class="col-auto browse_container hide">
+                        <input type="file" class="form-control" id="importFile">
+                      </div>
+                      <div class="col-auto selectCollection_container">
+                        <div class="row">
+                          <div class="col-auto">
+                            <select class="form-select" id="selectCollection" onchange="generateNameDropDown()">
+                              <option>SKB</option>
+                              <option>Sapphire</option>
+                            </select>
+                          </div>
+                          <div class="col-auto">
+                            <select class="form-select" id="name">
+
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col-auto">
+                    <button type="button" id="processBtn" class="btn bg-primary-subtle text-primary-emphasis"
+                      onclick="processRequest()">Process</button>
+                  </div>
+                </div>
+
+                <div class="card bg-success-subtle text-success-emphasis loading_import hide"
+                  style="width: 38rem;">
+                  <div class="card-body ">
+                    <h5 class="card-title">
+                      Status :
+                      <span class="">in progress... </span>
+                      <div class="spinner-border spinner-border-sm" role="status">
+                      </div>
+                    </h5>
+                    <p class="d-flex align-items-center card-text status"></p>
+                    <p class="card-text progress_percentage"></p>
+                    <div class="progress" role="progressbar" style="height: 2px">
+                      <div class="progress-bar bg-dark" style="width: 0%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="alert alert_import alert-success d-flex align-items-center hide" role="alert">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img"
+                    aria-label="Warning:">
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                  </svg>
+                  <div>
+                    <strong>Congratulations !</strong> your request is processed.
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
 
