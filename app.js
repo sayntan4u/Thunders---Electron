@@ -6,14 +6,14 @@ const fs = require("fs");
 const app = express();
 const port = process.env.PORT || 8080;
 
-//Setup directories
-var dir = ['./backup', './public/legal', './uploads'];
+// //Setup directories
+// var dir = ['./backup', './public/legal', './uploads'];
 
-dir.forEach(function (currentValue, index, arr) {
-  if (!fs.existsSync(path.join(__dirname, currentValue))) {
-    fs.mkdirSync(path.join(__dirname, currentValue));
-  }
-});
+// dir.forEach(function (currentValue, index, arr) {
+//   if (!fs.existsSync(path.join(__dirname, currentValue))) {
+//     fs.mkdirSync(path.join(__dirname, currentValue));
+//   }
+// });
 
 
 app.set('view engine', 'ejs');

@@ -1,6 +1,6 @@
 const { app, BrowserWindow } = require("electron");
 const server = require("./app");
- 
+
 let mainWindow;
  
 function createWindow() {
