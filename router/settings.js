@@ -22,8 +22,22 @@ router.get("/getStatus", requireAuth, async (req, res) => {
 });
 
 router.post("/getSettings", requireAuth, async (req, res) => {
-   const settings = dbm.getSettings();
-   res.send(settings);
+    // try {
+    //     fs.readFile('./settings.conf', 'utf8', (err, data) => {
+    //         if (err) {
+    //             console.error(err);
+    //             return;
+    //         }
+    //         // const json = JSON.parse(data);
+    //         res.send(data);
+    //     });
+
+    // } catch (err) {
+    //     res.send(err);
+    // }
+
+    const data = await dbm.getSettings();
+    res.send(data);
 });
 
 router.post("/saveSettings", requireAuth, async (req, res) => {
@@ -37,7 +51,7 @@ router.post("/saveSettings", requireAuth, async (req, res) => {
 router.post("/updateShowProfit", requireAuth, async (req, res) => {
     const config = req.body.config;
     await dbm.updateShowProfit(config);
-    // res.send("success");
+    res.send("success");
 });
 
 router.post("/export", requireAuth, async (req, res) => {
