@@ -1198,6 +1198,16 @@ function generateNameDropDown() {
     xhttp.send(JSON.stringify(data));
 }
 
+function downloadDB(exportObj, exportName) {
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 2));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", exportName + ".db");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+}
+
 var idInterval = null;
 function processRequest() {
 
@@ -1218,6 +1228,11 @@ function processRequest() {
         const xhttp = new XMLHttpRequest();
         xhttp.open("POST", "/settings/export");
         xhttp.onload = function () {
+            const result = JSON.parse(this.responseText);
+            // console.log(result);
+            const dt = new Date();
+            downloadDB(result, group + '_' + field + '_' + dt.toString().replace(/:/g, ""));
+
             clearInterval(idInterval);
             $("#processBtn").prop("disabled", false);
             $(".loading_import").addClass("hide");
@@ -1347,12 +1362,12 @@ function getStatusImport() {
 }
 
 function toggleShowProfit() {
-   settingsJson.showProfit = $("#showProfitSwitch").prop("checked");
-   const data = { config: settingsJson };
+    settingsJson.showProfit = $("#showProfitSwitch").prop("checked");
+    const data = { config: settingsJson };
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/settings/updateShowProfit");
     xhttp.onload = function () {
-        
+
     }
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(data));

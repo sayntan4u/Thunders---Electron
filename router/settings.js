@@ -62,21 +62,28 @@ router.post("/export", requireAuth, async (req, res) => {
 
     const data = await dbm.getFullCollectionData(group, field);
 
-    const dt = new Date();
+    // const dt = new Date();
 
-    try {
-        fs.writeFile(
-            './backup/' + group + '_' + field + '_' + dt.toString().replace(/:/g, "") + '.db',
-            JSON.stringify(data, null, 2),
-            function (err) {
-                if (err) throw err;
-                // console.log('Saved!');
-                res.send("Saved");
-            });
+    // try {
+    //     fs.writeFile(
+    //         './backup/' + group + '_' + field + '_' + dt.toString().replace(/:/g, "") + '.db',
+    //         JSON.stringify(data, null, 2),
+    //         function (err) {
+    //             if (err) throw err;
+    //             // console.log('Saved!');
+    //             res.send("Saved");
+    //         });
 
-    } catch (err) {
-        res.send(err);
-    }
+    // } catch (err) {
+    //     res.send(err);
+    // }
+    // res.writeHead(200, {
+    //     'Content-Type': 'text/plain',
+    //     'Content-disposition': 'attachment;filename=backup.db',
+    //     'Content-Length': data.length
+    // });
+    // res.end(JSON.stringify(data, null, 2));
+    res.send(data);
 });
 
 router.post("/upload", requireAuth, async (req, res) => {
@@ -84,10 +91,10 @@ router.post("/upload", requireAuth, async (req, res) => {
     form.parse(req, function (err, fields, files) {
         // console.log(files.file[0].filepath);
         var oldpath = files.file[0].filepath;
-        var newpath = './uploads/' + files.file[0].originalFilename;
-        fs.copyFileSync(oldpath, newpath);
+        // var newpath = './uploads/' + files.file[0].originalFilename;
+        // fs.copyFileSync(oldpath, newpath);
 
-        dbm.uploadFullCollectionData(newpath);
+        dbm.uploadFullCollectionData(oldpath);
     });
 });
 
