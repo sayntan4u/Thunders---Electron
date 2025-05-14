@@ -4,7 +4,7 @@ const session = require('express-session');
 const fs = require("fs");
 
 const app = express();
-const port = process.env.PORT || 11000;
+const port = process.env.PORT || 12000;
 
 // //Setup directories
 // var dir = ['./backup', './public/legal', './uploads'];
