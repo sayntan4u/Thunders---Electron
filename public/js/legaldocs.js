@@ -1,4 +1,4 @@
-function generateLegalDoc(){
+function generateLegalDoc() {
 
     var prospectName = document.getElementById("prospectName").value;
     var prospectAddress = document.getElementById("prospectAddress").value;
@@ -14,8 +14,8 @@ function generateLegalDoc(){
     var product3 = document.getElementById("product3").value;
     var product4 = document.getElementById("product4").value;
 
-    const data = { 
-        prospectName: prospectName, 
+    const data = {
+        prospectName: prospectName,
         prospectAddress: prospectAddress,
         irID: irID,
         amt: amt,
@@ -32,15 +32,40 @@ function generateLegalDoc(){
 
 
     const xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-        // const response = this.responseText;
-        // console.log(response);
-        $(".legal").attr("href","legal/LEGAL DOCUMENT - " + prospectName +".docx");
-        $(".declaration").attr("href","legal/DECLARATION - " + prospectName +".docx");
-        $("#legalDocResult").removeClass("hide");
+    xhttp.onload = function () {
+        const response = this.responseText;
 
-      }
+        if (docType.value == "Declaration") {
+            downloadLegal(response.split("THUNDER_LEGAL_DOCUMENT")[0], "DECLARATION - " + prospectName);
+        } else {
+            downloadLegal(response.split("THUNDER_LEGAL_DOCUMENT")[1], "LEGAL DOCUMENT - " + prospectName);
+        }
+
+
+
+    }
     xhttp.open("POST", "/utilities/generateLegalDoc");
-    xhttp.setRequestHeader('Content-Type', 'application/json'); 
+    xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(data));
+}
+
+function downloadLegal(exportObj, exportName) {
+    var dataStr = "data:application/octet-stream; base64," + exportObj;
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", exportName + ".docx");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+
+}
+
+function downloadDeclaration(exportObj, exportName) {
+    var dataStr = "data:application/octet-stream; base64," + exportObj;
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", exportName + ".docx");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
 }
